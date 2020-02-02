@@ -15,7 +15,13 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Title', 255)->
+            $table->string('title', 255);
+            $table->text('content');
+            $table->boolean('isDeleted');
+            $table->boolean('isView')->comment('The news will be show or not');
+            $table->boolean('topView')->comment('The news will be on top news. It will sort about 10 latest news.');
+            $table->integer('newsTypeId');
+            $table->integer('reporterUserId');
             $table->timestamps();
         });
     }

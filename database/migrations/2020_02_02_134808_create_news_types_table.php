@@ -15,6 +15,9 @@ class CreateNewsTypesTable extends Migration
     {
         Schema::create('news_types', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('type', 255);
+            $table->boolean('isDeleted');
+            $table->boolean('isView')->comment('The news will be show or not');
             $table->timestamps();
         });
     }

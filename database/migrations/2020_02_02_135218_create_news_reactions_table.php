@@ -15,6 +15,10 @@ class CreateNewsReactionsTable extends Migration
     {
         Schema::create('news_reactions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('reaction', 255);
+            $table->boolean('isDeleted');
+            $table->integer('newsId');
+            $table->integer('visitorUserId');
             $table->timestamps();
         });
     }
