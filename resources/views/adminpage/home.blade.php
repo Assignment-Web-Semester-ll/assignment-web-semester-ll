@@ -4,12 +4,13 @@
     Home
 @endsection
 
-{{-- @section('content')
-    <div class="row">
-            
+@section('content')
+    <div>
+        <h1>Hello</h1>
     </div>
 @endsection
 
+{{--
 @section('scripts')
 
 @endsection --}}

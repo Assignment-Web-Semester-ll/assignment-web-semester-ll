@@ -10,4 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Http\Controllers\Controller;
+
 Route::get('/', function () { return view('adminpage.home'); });
+
+Route::get('/BlogCategory/index', 'BlogCategoryController@index');
