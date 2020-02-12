@@ -9,17 +9,23 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <script src="../commonStyle/js/jquery-3.4.1.js"></script>
-    <link rel="stylesheet" src="../commonStyle/js/bootstrap.min.js">
-    <link rel="stylesheet" src="../commonStyle/js/popper.min.css">
     <link rel="stylesheet" href="../commonStyle/css/bootstrap.min.css">
+    <script src="../commonStyle/js/jquery-3.4.1.js"></script>
+    <script src="../commonStyle/js/popper.min.css"></script>
+    <script src="../commonStyle/js/bootstrap.min.js"></script>
+    
+    {{-- 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    --}} 
+    
+
     <link rel="stylesheet" href="../commonStyle/fontawesome-free-5.12.1-web/css/fontawesome.min.css">
 
     <link rel="stylesheet" href="../adminPageStyle/NavigationBar.css">
     <link rel="stylesheet" href="../adminPageStyle/MasterPage.css">
-    
-
-    
 </head>
 <body>
     <div class="container-fluid">
@@ -34,7 +40,7 @@
                     <a href="#dropdownNonBootstrap" class="dropbtn">Setting</a>
                     <div class="dropdownNonBootstrap-content">
                         <a href="#" >User Manager</a>
-                        <a href="/BlogCategory/index" >Blog Category</a>
+                        <a href="{{route('blogcategory.index')}}" >Blog Category</a>
                     </div>
                 </div>
                 <a href="#" class="logout">LogOut</a>
@@ -46,5 +52,6 @@
             </article>
         </section>
     </div>
+    @yield('page-script')
 </body>
 </html>
