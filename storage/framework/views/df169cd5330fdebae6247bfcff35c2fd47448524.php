@@ -1,11 +1,11 @@
 <!-- The Modal -->
-<div class="modal" id="ModalCreate">
+<div class="modal" id="ModelEdit">
     <div class="modal-dialog">
     <div class="modal-content">
 
         <!-- Modal Header -->
         <div class="modal-header">
-        <h4 class="modal-title">Add New Category</h4>
+        <h4 class="modal-title">Edit Category</h4>
             <input type="button" class="btn close" data-dismiss="modal" value="&times;">
         </div>
 
@@ -16,7 +16,7 @@
                     <label for="usr">ID</label>
                 </div>
                 <div class="col-xl-8">
-                    <input type="text" class="form-control" id="id" name="id" value="Auto Generate" disabled>
+                    <input type="text" class="form-control" id="id" name="id" value="<?php echo e($blogcategory->id ?? "Auto Generate"); ?>" disabled>
                 </div>
             </div>
             <div class="row marginBottom">
@@ -41,28 +41,11 @@
 
         <!-- Modal footer -->
         <div class="modal-footer">
-            <input type="button" class="btn btn-success" id="btnCreate" name="btnCreate" value="Submit">
-            {{-- <a href="{{ URL::to('/BlogCategory/destroy', ['blogcategory' => $blogCategory->id]) }}" class="btn btn-link">Delete</a> --}}
+            
             <input type="button" class="btn btn-danger" id="cancel" name="cancel" value="Cancel" data-dismiss="modal">
-            {{-- <a href="{{action('BlogCategoryController@myindex')}}" role="button" class="btn btn-danger" id="cancel" name="cancel" value="Cancel">Cancel</a> --}}
+            
         </div>
 
     </div>
     </div>
-</div>
-<script>
-    $('#btnCreate').click(function(){
-        var blogCategory = {
-            id : $('id').val(),
-            blogCategory : $('blogCategory').val();
-            isView : $('isView').val();
-        }
-        $.ajax({
-            url: "{{ route('blogcategory.store') }}",
-            data: {
-                'request' : blogCategory
-            },
-            headers: {'X-CSRF-TOKEN' : $('meta[name="csrf-token"').attr('content')}
-        })
-    });
-</script>
+</div><?php /**PATH D:\Year (Prepare for work)\Laravel\Assignment_Sokim\assignment-web-semester-ll\resources\views/adminpage/blogcategoryedit.blade.php ENDPATH**/ ?>

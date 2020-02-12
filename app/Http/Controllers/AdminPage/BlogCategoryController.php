@@ -40,16 +40,17 @@ class BlogCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        alert("Hello");
         // dd($request->all());
 
         // $blogcategory = BlogCategory::create($request->input());
 
-        DB::table('tbblogcategories') -> insert([
-            'blogCategory' => $request->blogCategory,
-            'isView' => $request->isView,
-            'isDeleted' => "0"
-        ]);
-        return redirect()->action('AdminPage\BlogCategoryController@index');
+        // DB::table('tbblogcategories') -> insert([
+        //     'blogCategory' => $request->blogCategory,
+        //     'isView' => $request->isView,
+        //     'isDeleted' => "0"
+        // ]);
+        // return redirect()->action('AdminPage\BlogCategoryController@index');
     }
 
     /**

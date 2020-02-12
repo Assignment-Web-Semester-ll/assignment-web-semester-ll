@@ -42,9 +42,9 @@
         <!-- Modal footer -->
         <div class="modal-footer">
             <input type="button" class="btn btn-success" id="btnCreate" name="btnCreate" value="Submit">
-            {{-- <a href="{{ URL::to('/BlogCategory/destroy', ['blogcategory' => $blogCategory->id]) }}" class="btn btn-link">Delete</a> --}}
+            
             <input type="button" class="btn btn-danger" id="cancel" name="cancel" value="Cancel" data-dismiss="modal">
-            {{-- <a href="{{action('BlogCategoryController@myindex')}}" role="button" class="btn btn-danger" id="cancel" name="cancel" value="Cancel">Cancel</a> --}}
+            
         </div>
 
     </div>
@@ -58,11 +58,11 @@
             isView : $('isView').val();
         }
         $.ajax({
-            url: "{{ route('blogcategory.store') }}",
+            url: "<?php echo e(route('blogcategory.store')); ?>",
             data: {
                 'request' : blogCategory
             },
             headers: {'X-CSRF-TOKEN' : $('meta[name="csrf-token"').attr('content')}
         })
     });
-</script>
+</script><?php /**PATH D:\Year (Prepare for work)\Laravel\Assignment_Sokim\assignment-web-semester-ll\resources\views/adminpage/blogcategorycreate.blade.php ENDPATH**/ ?>

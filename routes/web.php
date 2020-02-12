@@ -18,6 +18,7 @@ Route::get('/', function () { return view('adminpage.home'); });
 // Route::get('/BlogCategory/index', 'AdminPage\BlogCategoryController@index');
 
 Route::get('/BlogCategory/destroy/{blogcategory}', 'AdminPage\BlogCategoryController@destroy');
+Route::get('/BlogCategory/store/{blogcategory}', 'AdminPage\BlogCategoryController@store');
 
 /*******************************
  *      Start Resource
