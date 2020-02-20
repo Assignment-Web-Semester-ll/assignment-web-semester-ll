@@ -16,7 +16,10 @@ class BlogCategoryController extends Controller
      */
     public function index()
     {
-        $BlogCategory = BlogCategory::paginate(10);
+        $BlogCategory = DB::table('tbblogcategories')
+        ->where('isDeleted', 0)
+        ->orderBy('id', 'desc')
+        ->paginate(10);
         return view('adminpage.blogcategoryindex')
             ->with('blogCategories', $BlogCategory);
     }
@@ -40,17 +43,15 @@ class BlogCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        alert("Hello");
-        // dd($request->all());
-
-        // $blogcategory = BlogCategory::create($request->input());
-
-        // DB::table('tbblogcategories') -> insert([
-        //     'blogCategory' => $request->blogCategory,
-        //     'isView' => $request->isView,
-        //     'isDeleted' => "0"
-        // ]);
-        // return redirect()->action('AdminPage\BlogCategoryController@index');
+        $input = $request->all();
+        DB::table('tbblogcategories') -> insert([
+            'categoryCode' => $request->categoryCode,
+            'categoryName' => $request->categoryName,
+            'isView' => $request->isView,
+            'isDeleted' => 0
+        ]);
+        // return response(200);
+        return response()->json(['success'=>$request->all()]);
     }
 
     /**
@@ -61,7 +62,9 @@ class BlogCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $input = $id;
+        // dd($id->all());
+        // return dump($id);
     }
 
     /**
@@ -70,9 +73,13 @@ class BlogCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
-        //
+        $result = DB::table('tbblogcategories')
+        ->where('id', $id)
+        ->where('isDeleted', 0)
+        ->first();
+        return response()->json($result);
     }
 
     /**
@@ -82,9 +89,20 @@ class BlogCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(int $id, Request $request)
     {
-        //
+        $getRequest = $request->all();
+        $getId = $id;
+        DB::table('tbblogcategories')
+        ->where('id', $id)
+        ->update([
+            'categoryCode' => $request->categoryCode,
+            'categoryName' => $request->categoryName,
+            'isView' => $request->isView,
+            'isDeleted' => 0
+        ]);
+        $result = DB::table('tbblogcategories')->where('id', $id)->first();
+        return response()->json($result);
     }
 
     /**
@@ -93,10 +111,18 @@ class BlogCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BlogCategory $blogcategory)
+    public function destroy(int  $id)
     {
         // dd($blogcategory->all());
-        $blogcategory->delete();
-        return redirect()->action('AdminPage\BlogCategoryController@index');
+        // $blogcategory->delete();
+        // return redirect()->action('AdminPage\BlogCategoryController@index');
+        $input = $id;
+        // DB::table('tbblogcategories')->where('id', $id)->delete();
+        DB::table('tbblogcategories')
+        ->where('id', $id)
+        ->update([
+            'isDeleted' => 1
+        ]);
+        return response(200);
     }
 }
