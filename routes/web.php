@@ -15,10 +15,18 @@ use App\Http\Controllers\Controller;
 
 Route::get('/', function () { return view('adminpage.home'); });
 
-// Route::get('/BlogCategory/index', 'AdminPage\BlogCategoryController@index');
+// Route::get('/show', 'AdminPage\BlogCategoryController@show');
+// Route::get('/showtest', function(){  
+//     if(Request::ajax()){
+//         return "getRequest has loaded.";
+//     }
+// });
 
-Route::get('/BlogCategory/destroy/{blogcategory}', 'AdminPage\BlogCategoryController@destroy');
-Route::get('/BlogCategory/store/{blogcategory}', 'AdminPage\BlogCategoryController@store');
+//--BlogCategory
+Route::delete('/blogcategory/destory/{id}', 'AdminPage\BlogCategoryController@destroy');
+Route::get('/blogcategory/edit/{id}', 'AdminPage\BlogCategoryController@edit');
+Route::put('/blogcategory/update/{id}', 'AdminPage\BlogCategoryController@update');
+
 
 /*******************************
  *      Start Resource
