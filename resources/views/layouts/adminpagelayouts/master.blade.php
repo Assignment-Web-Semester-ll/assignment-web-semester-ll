@@ -8,12 +8,13 @@
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <link rel="stylesheet" href="../commonStyle/css/bootstrap.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    <link rel="stylesheet" href="../commonStyle/css/bootstrap.css"> 
     <script src="../commonStyle/js/jquery-3.4.1.js"></script>
-    <script src="../commonStyle/js/popper.min.css"></script>
+    <script src="../commonStyle/js/popper.min.js"></script>
     <script src="../commonStyle/js/bootstrap.min.js"></script>
-    
+    <link rel="stylesheet" href="../commonStyle/fontawesome-free-5.12.1-web/css/fontawesome.min.css">
     {{-- 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -22,10 +23,13 @@
     --}} 
     
 
-    <link rel="stylesheet" href="../commonStyle/fontawesome-free-5.12.1-web/css/fontawesome.min.css">
+    
 
     <link rel="stylesheet" href="../adminPageStyle/NavigationBar.css">
     <link rel="stylesheet" href="../adminPageStyle/MasterPage.css">
+
+    @yield('css')
+    
 </head>
 <body>
     <div class="container-fluid">
@@ -52,6 +56,8 @@
             </article>
         </section>
     </div>
-    @yield('page-script')
+
+    @yield('javascript')
+
 </body>
 </html>

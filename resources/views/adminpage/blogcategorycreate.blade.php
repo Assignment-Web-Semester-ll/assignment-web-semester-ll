@@ -13,27 +13,35 @@
         <div class="modal-body">
             <div class="row marginBottom">
                 <div class="col-xl-4">
-                    <label for="usr">ID</label>
+                    <label>ID</label>
                 </div>
                 <div class="col-xl-8">
-                    <input type="text" class="form-control" id="id" name="id" value="Auto Generate" disabled>
+                    <input type="text" class="form-control" id="createCategoryId" name="createCategoryId" value="Auto Generate" disabled>
                 </div>
             </div>
             <div class="row marginBottom">
                 <div class="col-xl-4">
-                    <label for="usr">Blog Category</label>
+                    <label>Category Code</label>
                 </div>
                 <div class="col-xl-8">
-                    <input type="text" class="form-control" id="blogCategory" name="blogCategory" placeholder="មុខម្ហូបខ្មែរ,មុខម្ហូបបរទេស,...">
+                    <input type="text" class="form-control" id="createCategoryCode" name="createCategoryCode" placeholder="CT001">
+                </div>
+            </div>
+            <div class="row marginBottom">
+                <div class="col-xl-4">
+                    <label>Category Name</label>
+                </div>
+                <div class="col-xl-8">
+                    <input type="text" class="form-control" id="createCategoryName" name="createCategoryName" placeholder="មុខម្ហូបខ្មែរ,មុខម្ហូបបរទេស,...">
                 </div>
             </div>
             <div class="row marginBottom">
                 <div class="col-xl-10">
-                    <label for="usr">Do you want this category to view on visitor page?</label>
+                    <label>Do you want this category to view on visitor page?</label>
                 </div>
                 <div class="col-xl-2">
-                    <label class="form-check-label" for="categoryID">
-                        <input type="checkbox" class="form-check-input" id="isView" name="isView" value="1" checked>Yes
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" id="createIsView" name="createIsView" value="1" checked>Yes
                     </label>
                 </div>
             </div>
@@ -42,27 +50,11 @@
         <!-- Modal footer -->
         <div class="modal-footer">
             <input type="button" class="btn btn-success" id="btnCreate" name="btnCreate" value="Submit">
+            <input type="button" class="btn btn-danger" id="btnCancelCreate" name="btnCancelCreate" value="Cancel" data-dismiss="modal">
             {{-- <a href="{{ URL::to('/BlogCategory/destroy', ['blogcategory' => $blogCategory->id]) }}" class="btn btn-link">Delete</a> --}}
-            <input type="button" class="btn btn-danger" id="cancel" name="cancel" value="Cancel" data-dismiss="modal">
             {{-- <a href="{{action('BlogCategoryController@myindex')}}" role="button" class="btn btn-danger" id="cancel" name="cancel" value="Cancel">Cancel</a> --}}
         </div>
 
     </div>
     </div>
 </div>
-<script>
-    $('#btnCreate').click(function(){
-        var blogCategory = {
-            id : $('id').val(),
-            blogCategory : $('blogCategory').val();
-            isView : $('isView').val();
-        }
-        $.ajax({
-            url: "{{ route('blogcategory.store') }}",
-            data: {
-                'request' : blogCategory
-            },
-            headers: {'X-CSRF-TOKEN' : $('meta[name="csrf-token"').attr('content')}
-        })
-    });
-</script>
