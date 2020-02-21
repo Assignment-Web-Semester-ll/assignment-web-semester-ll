@@ -33,6 +33,8 @@ Route::put('/blogcategory/update/{id}', 'AdminPage\BlogCategoryController@update
  *******************************/
 //---Blog Category
 Route::resource('blogcategory', 'AdminPage\BlogCategoryController');
+//---Reporter User
+Route::resource('reporteruser', 'AdminPage\ReporterUserController');
 
 /*******************************
  *      End Resource
