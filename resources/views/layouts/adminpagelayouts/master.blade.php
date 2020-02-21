@@ -43,7 +43,7 @@
                 <div class="dropdownNonBootstrap">
                     <a href="#dropdownNonBootstrap" class="dropbtn">Setting</a>
                     <div class="dropdownNonBootstrap-content">
-                        <a href="#" >User Manager</a>
+                        <a href="{{route('reporteruser.index')}}" >User Manager</a>
                         <a href="{{route('blogcategory.index')}}" >Blog Category</a>
                     </div>
                 </div>
