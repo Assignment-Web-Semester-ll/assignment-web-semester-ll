@@ -29,10 +29,10 @@
             </div>
             <div class="row marginBottom">
                 <div class="col-xl-4">
-                    <label>Birth Of Date</label>
+                    <label>Date of Birth</label>
                 </div>
                 <div class="col-xl-8">
-                    <input type="date" class="form-control" id="createBirthOfDate" name="createBirthOfDate">
+                    <input type="date" class="form-control" id="createDateofBirth" name="createDateofBirth">
                 </div>
             </div>
             <div class="row marginBottom">
@@ -69,8 +69,40 @@
                     </label>
                 </div>
             </div>
+
+
+            {{-- @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
+            </div>
+            <img src="images/{{ Session::get('image') }}">
+            @endif
+    
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif --}}
+    
+            <div class="row marginBottom">
+                <div class="col-xl-4">
+                    <label>Photo</label>
+                </div>
+                <div class="col-xl-8">
+                    <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+                        <input type="file" name="image" class="form-control">
+                    </form>
+                </div>
+            </div>
+
         </div>
-        <input type="file" name="txt_file">
+
         <!-- Modal footer -->
         <div class="modal-footer">
             <input type="button" class="btn btn-success" id="btnCreateUser" name="btnCreateUser" value="Submit">
@@ -80,3 +112,65 @@
     </div>
     </div>
 </div>
+
+
+@section('javascript')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var tableclicked = null;
+            $(document).on('click', '#btnCreateUser', function(e){
+
+                var fullname = $("#createFullName").val();
+                var dob = $("#createDateofBirth").val();
+                var username = $("#createUserName").val();
+                var password = $("#createPassword").val();
+                var confirmPassword = $("#createConfirmPassword").val();
+                var isAdmin = $('#createIsAdmin').prop("Checked") == true ? true : false;
+
+                if(!password && !confirmPassword && !(password == confirmPassword)){
+                    console.log("Incorrect");
+                    return;
+                }
+
+                console.log(isAdmin);
+
+                //stop submit the form, we will post it manually.
+                event.preventDefault();
+                console.log("Invoked");
+                // Get form
+                var form = $('#fileUploadForm')[0];
+
+                // Create an FormData object 
+                var data = new FormData(form);
+
+                // If you want to add an extra field for the FormData
+                data.append("createFullName", fullname);
+                data.append("createDateofBirth", dob);
+                data.append("createUserName", username);
+                data.append("createPassword", password);
+                data.append("createIsAdmin", isAdmin);
+
+                $.ajax({
+                    type: "POST",
+                    enctype: 'multipart/form-data',
+                    url: "{{ route('reporteruser.store') }}",
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    timeout: 600000,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (data) {
+                        console.log("SUCCESS : ", data);
+                    },
+                    error: function (e) {
+                        console.log("ERROR : ", e);
+
+                    }
+                });
+            });
+        });
+    </script>
+@stop
