@@ -7,6 +7,7 @@ use App\ReporterUser;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class ReporterUserController extends Controller
 {
@@ -43,7 +44,14 @@ class ReporterUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        if(isset($request->image)){
+            $photoInfo =  PostPhoto($request);
+            if(isset($photoInfo) && $photoInfo->getStatusCode() == 200){
+                $photoName = json_decode($photoInfo->content());
+            }
+        }
+        
     }
 
     /**
