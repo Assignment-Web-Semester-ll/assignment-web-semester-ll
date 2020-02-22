@@ -26,7 +26,9 @@ Route::get('/', function () { return view('adminpage.home'); });
 Route::delete('/blogcategory/destory/{id}', 'AdminPage\BlogCategoryController@destroy');
 Route::get('/blogcategory/edit/{id}', 'AdminPage\BlogCategoryController@edit');
 Route::put('/blogcategory/update/{id}', 'AdminPage\BlogCategoryController@update');
-
+//--Upload Image
+Route::get('image-upload', 'AdminPage\ImageUploadController@imageUpload') -> name('image.upload');
+Route::post('image-upload', 'AdminPage\ImageUploadController@imageUploadPost') -> name('image.upload.post');
 
 /*******************************
  *      Start Resource
