@@ -32,7 +32,8 @@
     },
     "autoload": {
         "files": [
-            "app/Helpers/PostAndGetPhoto.php"
+            "app/Helpers/PostAndGetPhoto.php",
+            "app/Helpers/Converter.php"
         ],
         "psr-4": {
             "App\\": "app/"
