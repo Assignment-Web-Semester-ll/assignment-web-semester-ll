@@ -26,6 +26,12 @@ Route::get('/', function () { return view('adminpage.home'); });
 Route::delete('/blogcategory/destory/{id}', 'AdminPage\BlogCategoryController@destroy');
 Route::get('/blogcategory/edit/{id}', 'AdminPage\BlogCategoryController@edit');
 Route::put('/blogcategory/update/{id}', 'AdminPage\BlogCategoryController@update');
+
+//--ReporterUser
+Route::delete('/reporteruser/destory/{id}', 'AdminPage\ReporterUserController@destroy');
+Route::get('/reporteruser/edit/{id}', 'AdminPage\ReporterUserController@edit');
+Route::put('/reporteruser/update/{id}', 'AdminPage\ReporterUserController@update');
+
 //--Upload Image
 Route::get('image-upload', 'AdminPage\ImageUploadController@imageUpload') -> name('image.upload');
 Route::post('image-upload', 'AdminPage\ImageUploadController@imageUploadPost') -> name('image.upload.post');

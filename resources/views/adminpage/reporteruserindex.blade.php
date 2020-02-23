@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="row" style="margin-top: 20px;">
-            <table id="tbCategory" class="table table-hover table-bordered">
+            <table id="tbUser" class="table table-hover table-bordered">
                 <thead>
                     <tr>
                         <th class="Actions" colspan="3">Actions</th>
@@ -83,11 +83,13 @@
             </table>
         </div>
         @include('adminpage.reporterusercreate')
-        {{-- @include('adminpage.blogcategoryedit') --}}
+        @include('adminpage.reporteruseredit')
         {{-- @include('commoncomponent.loading') --}}
         {{-- {{ ( $blogCategories->links()) }} --}}
     </div>
 @endsection
+
+
 
 
 
