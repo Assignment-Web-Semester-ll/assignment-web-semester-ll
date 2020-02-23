@@ -44,14 +44,28 @@ class ReporterUserController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
+        // $input = $request->all();
+        $photoName = "";
+
         if(isset($request->image)){
             $photoInfo =  PostPhoto($request);
             if(isset($photoInfo) && $photoInfo->getStatusCode() == 200){
-                $photoName = json_decode($photoInfo->content());
+                $photoName = json_decode($photoInfo->content())->image;
             }
         }
-        
+
+        DB::table('tbreporterusers') -> insert([
+            'fullname' => $request->createFullName,
+            'username' => $request->createUserName,
+            'password' => $request->createPassword,
+            'email' => $request->createEmail,
+            'dob' => $request->createDateofBirth,
+            'profilePhoto' => $photoName,
+            'isAdmin' => ConvertStringToBoolean($request->createIsAdmin),
+            'isDeleted' => 0
+        ]);
+
+        return response()->json(['success'=>$request->all()]);
     }
 
     /**
@@ -62,7 +76,7 @@ class ReporterUserController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -73,7 +87,11 @@ class ReporterUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $result = DB::table('tbreporterusers')
+        ->where('id', $id)
+        ->where('isDeleted', 0)
+        ->first();
+        return response()->json($result);
     }
 
     /**
@@ -85,7 +103,8 @@ class ReporterUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all(); 
+        $getID = $id;
     }
 
     /**
@@ -96,6 +115,12 @@ class ReporterUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $input = $id;
+        DB::table('tbreporterusers')
+        ->where('id', $id)
+        ->update([
+            'isDeleted' => 1
+        ]);
+        return response(200);
     }
 }
