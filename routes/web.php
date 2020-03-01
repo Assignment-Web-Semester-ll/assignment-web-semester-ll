@@ -12,7 +12,6 @@
 */
 
 use App\Http\Controllers\Controller;
-Auth::routes();
 
 Route::get('/', function () { return view('adminpage.home'); });
 Route::get('/blog/create', function () { return view('adminpage.blogcreate'); });
@@ -50,7 +49,7 @@ Route::post('image-upload', 'AdminPage\ImageUploadController@imageUploadPost') -
 //---Blog Category
 Route::resource('blogcategory', 'AdminPage\BlogCategoryController');
 //---Reporter User
-// Route::resource('blog', 'AdminPage\BlogController');
+Route::resource('blog', 'AdminPage\BlogController');
 //---Reporter User
 Route::resource('reporteruser', 'AdminPage\ReporterUserController');
 
