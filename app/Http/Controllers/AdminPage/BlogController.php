@@ -25,10 +25,10 @@ class BlogController extends Controller
      */
     public function create()
     {
-        // $blogCategory = DB::table('tbblogcategories')->pluck('categoryName', 'id');
-        // return view('adminpage.blog')
-        //     ->with('isNew', 1)
-        //     ->with('blogCategory', $blogCategory);
+        $blogCategory = DB::table('tbblogcategories')->pluck('categoryName', 'id');
+        return view('adminpage.blog')
+            ->with('isNew', 1)
+            ->with('blogCategory', $blogCategory);
     }
 
     /**
@@ -72,9 +72,30 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $getID = $id;
 
+        $blogCategory = DB::table('tbblogcategories')->pluck('categoryName', 'id');
+        // // $blog = DB::table('tbblogs')
+        // // ->where('id', $id)
+        // // ->where('isDeleted', 0)
+        // // ->first();
+
+        return view('adminpage.blog')
+            ->with('isNew', 0)
+            ->with('blogCategory', $blogCategory);
+    }
+    public function myshow(int $id)
+    {
+        $blogCategory = DB::table('tbblogcategories')->pluck('categoryName', 'id');
+        // // $blog = DB::table('tbblogs')
+        // // ->where('id', $id)
+        // // ->where('isDeleted', 0)
+        // // ->first();
+
+        return view('adminpage.blog')
+            ->with('isNew', 0)
+            ->with('blogCategory', $blogCategory);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -92,7 +113,7 @@ class BlogController extends Controller
         // // ->where('isDeleted', 0)
         // // ->first();
 
-        return view('adminpage.blog')
+        return view('adminpage.blogedit')
             ->with('isNew', 0)
             ->with('blogCategory', $blogCategory);
     }
