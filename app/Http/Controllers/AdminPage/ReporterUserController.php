@@ -76,7 +76,11 @@ class ReporterUserController extends Controller
      */
     public function show($id)
     {
-        
+        $result = DB::table('tbreporterusers')
+        ->where('id', $id)
+        ->where('isDeleted', 0)
+        ->first();
+        return response()->json($result);
     }
 
     /**
@@ -105,6 +109,42 @@ class ReporterUserController extends Controller
     {
         $input = $request->all(); 
         $getID = $id;
+        $photoName = "";
+
+        if(isset($request->image)){
+            $photoInfo =  PostPhoto($request);
+            if(isset($photoInfo) && $photoInfo->getStatusCode() == 200){
+                $photoName = json_decode($photoInfo->content())->image;
+            }
+        }
+        if(isset($photoName) && $photoName != ""){
+            $insertstr = [
+                'fullname' => $request->createFullName,
+                'username' => $request->createUserName,
+                'password' => $request->createPassword,
+                'email' => $request->createEmail,
+                'dob' => $request->createDateofBirth,
+                'profilePhoto' => $photoName,
+                'isAdmin' => ConvertStringToBoolean($request->createIsAdmin),
+                'isDeleted' => 0
+            ];
+        }else{
+            $insertstr = [
+                'fullname' => $request->createFullName,
+                'username' => $request->createUserName,
+                'password' => $request->createPassword,
+                'email' => $request->createEmail,
+                'dob' => $request->createDateofBirth,
+                'isAdmin' => ConvertStringToBoolean($request->createIsAdmin),
+                'isDeleted' => 0
+            ];
+        }
+
+        DB::table('tbreporterusers')
+        ->where('id', $id)
+        ->update($insertstr);
+        $result = DB::table('tbreporterusers')->where('id', $id)->first();
+        return response()->json($result);
     }
 
     /**
