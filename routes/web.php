@@ -12,9 +12,10 @@
 */
 
 use App\Http\Controllers\Controller;
+Auth::routes();
 
 Route::get('/', function () { return view('adminpage.home'); });
-
+Route::get('/blog/create', function () { return view('adminpage.blogcreate'); });
 // Route::get('/show', 'AdminPage\BlogCategoryController@show');
 // Route::get('/showtest', function(){  
 //     if(Request::ajax()){
@@ -30,7 +31,14 @@ Route::put('/blogcategory/update/{id}', 'AdminPage\BlogCategoryController@update
 //--ReporterUser
 Route::delete('/reporteruser/destory/{id}', 'AdminPage\ReporterUserController@destroy');
 Route::get('/reporteruser/edit/{id}', 'AdminPage\ReporterUserController@edit');
-Route::put('/reporteruser/update/{id}', 'AdminPage\ReporterUserController@update');
+Route::get('/reporteruser/show/{id}', 'AdminPage\ReporterUserController@show');
+Route::post('/reporteruser/update/{id}', 'AdminPage\ReporterUserController@update');
+
+//--Blog
+Route::delete('/blog/destory/{id}', 'AdminPage\BlogController@destroy');
+Route::get('/blog/edit/{id}', 'AdminPage\BlogController@edit');
+Route::get('/blog/show/{id}', 'AdminPage\BlogController@show');
+Route::post('/blog/update/{id}', 'AdminPage\BlogController@update');
 
 //--Upload Image
 Route::get('image-upload', 'AdminPage\ImageUploadController@imageUpload') -> name('image.upload');
@@ -41,6 +49,8 @@ Route::post('image-upload', 'AdminPage\ImageUploadController@imageUploadPost') -
  *******************************/
 //---Blog Category
 Route::resource('blogcategory', 'AdminPage\BlogCategoryController');
+//---Reporter User
+// Route::resource('blog', 'AdminPage\BlogController');
 //---Reporter User
 Route::resource('reporteruser', 'AdminPage\ReporterUserController');
 

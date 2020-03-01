@@ -21,9 +21,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     --}} 
-    
-
-    
+         
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
+    {{-- <link href="../public/richtexteditor/summernote-bs4.min.css" rel="stylesheet">
+    <script src="../public/richtexteditor/summernote-bs4.min.js"></script> --}}
 
     <link rel="stylesheet" href="../adminPageStyle/NavigationBar.css">
     <link rel="stylesheet" href="../adminPageStyle/MasterPage.css">
@@ -39,7 +41,7 @@
         <nav id="navigation">
             <div class="navbarNonBootstrap">
                 <a href="#">Inbox</a>
-                <a href="#" >Blog</a>
+                <a href="/blog/edit/10" >Blog</a>
                 <div class="dropdownNonBootstrap">
                     <a href="#dropdownNonBootstrap" class="dropbtn">Setting</a>
                     <div class="dropdownNonBootstrap-content">

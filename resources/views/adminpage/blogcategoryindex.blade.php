@@ -127,6 +127,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(data){
+                        $("#loadMe").modal("hide");
                         $('#ModalCreate').modal('hide');
                         window.location = "{{ route('blogcategory.index') }}";
                     },
