@@ -1,0 +1,11 @@
+#logoleft{
+    float:left;
+    height:170px;
+    width:170px;     
+    padding-bottom: 10px;
+}
+#logoright{
+    float:right;
+    height:150px;
+    width:400px;
+}       
